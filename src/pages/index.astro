@@ -6,11 +6,11 @@ import ArticleCard from "../components/ArticleCard.astro";
 
 const globalArticles = (await getCollection("global"))
     .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-    .slice(0, 5);
+    .slice(0, 3);
 
 const palestineArticles = (await getCollection("palestine"))
     .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-    .slice(0, 5);
+    .slice(0, 3);
 ---
 
 <Layout>
