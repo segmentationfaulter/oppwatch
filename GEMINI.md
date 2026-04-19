@@ -14,3 +14,5 @@ Every article should have the followings:
 Consult Astro MCP server where in doubt.
 
 We will be using tailwind v4 for styling. We will be avoiding any JS libraries for this POC.
+
+We will be using Vault CMS (https://vaultcms.org/) for managing content.

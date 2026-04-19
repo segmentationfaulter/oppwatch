@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+
+const articles = (await getCollection('palestine'))
+	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<Layout>
+	<Header />
+	<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+		<h1 class="text-4xl font-bold text-slate-900 mb-12 border-r-8 border-red-600 pr-6">فلسطین</h1>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			{articles.map(article => (
+				<ArticleCard
+					title={article.data.title}
+					author={article.data.author}
+					publishDate={article.data.publishDate}
+					heroImage={article.data.heroImage}
+					href={`/palestine/${article.id}`}
+				/>
+			))}
+		</div>
+	</main>
+</Layout>

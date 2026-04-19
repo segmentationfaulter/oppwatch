@@ -1,0 +1,34 @@
+---
+interface Props {
+	title: string;
+	author: string;
+	publishDate: Date;
+	heroImage: string;
+	href: string;
+}
+
+const { title, author, publishDate, heroImage, href } = Astro.props;
+
+const formattedDate = new Intl.DateTimeFormat('ur-PK', {
+	dateStyle: 'long',
+}).format(publishDate);
+---
+
+<article class="flex flex-col overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow bg-white">
+	<div class="flex-shrink-0">
+		<img class="h-48 w-full object-cover" src={heroImage} alt={title} />
+	</div>
+	<div class="flex flex-1 flex-col justify-between p-6">
+		<div class="flex-1">
+			<a href={href} class="mt-2 block">
+				<p class="text-xl font-semibold text-slate-900 hover:text-red-600 transition-colors">{title}</p>
+			</a>
+		</div>
+		<div class="mt-6 flex items-center">
+			<div class="text-sm font-medium text-slate-900">
+				<p>{author}</p>
+				<p class="text-slate-500">{formattedDate}</p>
+			</div>
+		</div>
+	</div>
+</article>
