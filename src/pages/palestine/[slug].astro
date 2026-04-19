@@ -1,42 +1,48 @@
 ---
-import { getCollection, render } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
 
 export async function getStaticPaths() {
-	const articles = await getCollection('palestine');
-	return articles.map(entry => ({
-		params: { slug: entry.id },
-		props: { entry },
-	}));
+    const articles = await getCollection("palestine");
+    return articles.map((entry) => ({
+        params: { slug: entry.id },
+        props: { entry },
+    }));
 }
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
-const formattedDate = new Intl.DateTimeFormat('ur-PK', {
-	dateStyle: 'long',
+const formattedDate = new Intl.DateTimeFormat("ur-PK", {
+    dateStyle: "long",
 }).format(entry.data.publishDate);
 ---
 
 <Layout>
-	<Header />
-	<article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-		<img
-			src={entry.data.heroImage}
-			alt={entry.data.title}
-			class="w-full h-96 object-cover rounded-xl shadow-lg mb-8"
-		/>
-		<header class="mb-12">
-			<h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">{entry.data.title}</h1>
-			<div class="flex items-center text-slate-600 text-lg">
-				<span class="font-medium text-slate-900">{entry.data.author}</span>
-				<span class="mx-2">&bull;</span>
-				<span>{formattedDate}</span>
-			</div>
-		</header>
-		<div class="prose prose-lg prose-slate max-w-none prose-headings:text-slate-900 prose-p:leading-relaxed prose-p:text-slate-700">
-			<Content />
-		</div>
-	</article>
+    <Header />
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <img
+            src={entry.data.heroImage}
+            alt={entry.data.title}
+            class="w-full h-96 object-cover rounded-xl shadow-lg mb-8"
+        />
+        <header class="mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                {entry.data.title}
+            </h1>
+            <div class="flex items-center text-slate-600 text-lg">
+                <span class="font-medium text-slate-900"
+                    >{entry.data.author}</span
+                >
+                <span class="mx-2">&bull;</span>
+                <span>{formattedDate}</span>
+            </div>
+        </header>
+        <div
+            class="prose prose-lg prose-slate max-w-none prose-headings:text-slate-900 prose-p:leading-relaxed prose-p:text-slate-700"
+        >
+            <Content />
+        </div>
+    </article>
 </Layout>
