@@ -25,3 +25,8 @@ pnpm-debug.log*
 
 # wrangler
 .wrangler
+
+# Vault CMS / Obsidian
+**/.obsidian/workspace.json
+**/.obsidian/workspace-mobile.json
+.ref/
