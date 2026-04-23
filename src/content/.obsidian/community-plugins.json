@@ -3,7 +3,6 @@
   "property-over-file-name",
   "oxygen-settings",
   "vault-cms",
-  "astro-composer",
   "settings-search",
   "editing-toolbar",
   "image-manager",
@@ -18,5 +17,6 @@
   "omnisearch",
   "data-files-editor",
   "file-name-history",
-  "nested-properties"
+  "nested-properties",
+  "astro-composer"
 ]
